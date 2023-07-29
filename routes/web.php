@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ContactsController;
+use App\Models\Contacts;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ContactsController::class, 'index']);
 
-Route::get('/contacts/{id}', function () {
-    return view('contacts');
-});
+Route::get('/contacts/create', [ContactsController::class, 'create']);
+
+Route::post('/contacts', [ContactsController::class, 'store']);
+
+Route::get('/contacts/{contacts}', [ContactsController::class, 'show']);
